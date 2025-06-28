@@ -1,0 +1,144 @@
+1. Print 1 to 10
+
+class NumberPrinter extends Thread {
+    public void run() {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(getName() + ": " + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        NumberPrinter np = new NumberPrinter();
+        np.start();
+    }
+}
+
+2.  Multiple threads
+
+class MessagePrinter implements Runnable {
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + " is printing a message.");
+    }
+
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MessagePrinter());
+        Thread t2 = new Thread(new MessagePrinter());
+        Thread t3 = new Thread(new MessagePrinter());
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+
+
+3. Sleep and join
+
+class SleepJoinDemo extends Thread {
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println(getName() + " - Count: " + i);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {}
+        }
+    }
+
+    public static void main(String[] args) {
+        SleepJoinDemo t1 = new SleepJoinDemo();
+        SleepJoinDemo t2 = new SleepJoinDemo();
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {}
+        t2.start();
+    }
+}
+
+4. Ticket booking
+
+class TicketBooking {
+    int availableSeats = 5;
+
+    synchronized void bookTicket(String user, int seatsRequested) {
+        if (seatsRequested <= availableSeats) {
+            System.out.println(user + " is booking " + seatsRequested + " ticket(s)...");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {}
+            availableSeats -= seatsRequested;
+            System.out.println(user + " successfully booked " + seatsRequested + " ticket(s). Remaining: " + availableSeats);
+        } else {
+            System.out.println(user + " failed to book. Not enough tickets. Remaining: " + availableSeats);
+        }
+    }
+}
+
+class BookingThread extends Thread {
+    TicketBooking booking;
+    String user;
+    int seats;
+
+    BookingThread(TicketBooking booking, String user, int seats) {
+        this.booking = booking;
+        this.user = user;
+        this.seats = seats;
+    }
+
+    public void run() {
+        booking.bookTicket(user, seats);
+    }
+
+    public static void main(String[] args) {
+        TicketBooking booking = new TicketBooking();
+        BookingThread t1 = new BookingThread(booking, "User1", 2);
+        BookingThread t2 = new BookingThread(booking, "User2", 3);
+        BookingThread t3 = new BookingThread(booking, "User3", 1);
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+
+5. Bank Account 
+class BankAccount {
+    int balance = 1000;
+
+    synchronized void withdraw(String user, int amount) {
+        if (amount <= balance) {
+            System.out.println(user + " is withdrawing $" + amount);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {}
+            balance -= amount;
+            System.out.println(user + " completed withdrawal. Remaining balance: $" + balance);
+        } else {
+            System.out.println(user + " failed to withdraw due to insufficient funds. Balance: $" + balance);
+        }
+    }
+}
+
+class BankingThread extends Thread {
+    BankAccount account;
+    int amount;
+
+    BankingThread(BankAccount account, String name, int amount) {
+        super(name);
+        this.account = account;
+        this.amount = amount;
+    }
+
+    public void run() {
+        account.withdraw(getName(), amount);
+    }
+
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount();
+        BankingThread t1 = new BankingThread(account, "UserA", 300);
+        BankingThread t2 = new BankingThread(account, "UserB", 500);
+        BankingThread t3 = new BankingThread(account, "UserC", 400);
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+
