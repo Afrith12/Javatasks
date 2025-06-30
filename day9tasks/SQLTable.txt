@@ -1,0 +1,26 @@
+CREATE TABLE Publisher (
+    PublisherID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Address VARCHAR(255)
+);
+
+CREATE TABLE Author (
+    AuthorID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE Book (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(150),
+    Price DECIMAL(10, 2),
+    PublisherID INT,
+    FOREIGN KEY (PublisherID) REFERENCES Publisher(PublisherID)
+);
+
+CREATE TABLE BookAuthor (
+    BookID INT,
+    AuthorID INT,
+    PRIMARY KEY (BookID, AuthorID),
+    FOREIGN KEY (BookID) REFERENCES Book(BookID),
+    FOREIGN KEY (AuthorID) REFERENCES Author(AuthorID)
+);

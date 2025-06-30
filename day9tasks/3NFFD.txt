@@ -1,0 +1,10 @@
+Functional Dependencies:
+
+BookID → Title, Price, PublisherID
+
+PublisherID → Name, Address
+
+AuthorID → Name
+
+(BookID, AuthorID) → identifies authorship
+

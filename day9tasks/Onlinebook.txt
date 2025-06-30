@@ -1,0 +1,38 @@
+Entities:
+	Book
+	Auhor
+	Publisher
+
+ Attributes:
+
+1. Book: BookID (PK), Title, Price, PublisherID (FK)
+
+
+2. Author: AuthorID (PK), Name
+
+
+3. Publisher: PublisherID (PK), Name, Address
+
+
+4. BookAuthor: (for M:N relationship)
+
+	BookID (FK), AuthorID (FK)
+
+ER Diagram (Text-based)
+
++------------+     +--------------+     +----------------+
+|  Author    |     |   Book       |     |   Publisher    |
++------------+     +--------------+     +----------------+
+| AuthorID PK|<--->| BookID   PK  |<--->| PublisherID PK |
+| Name       |     | Title        |     | Name           |
++------------+     | Price        |     | Address        |
+                   +--------------+     +----------------+
+                          ^
+                          |
+                          |
+                     +---------+
+                     |BookAuthor|
+                     +---------+
+                     |BookID FK |
+                     |AuthorID FK|
+                     +---------+
