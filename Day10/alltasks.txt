@@ -20,7 +20,7 @@ mysql> select * from student where marks > 80;
 +-------+---------+-------+
 | StuID | name    | marks |
 +-------+---------+-------+
-|     1 | Affy    |    86 |
+|     1 | Afrith  |    86 |
 |     3 | Chan    |    82 |
 |     5 | Eve     |    96 |
 +-------+---------+-------+
