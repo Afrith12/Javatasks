@@ -1,0 +1,73 @@
+ create database day12;
+
+ use day12;
+
+ create table students(
+     Studid int primary key,
+     name varchar(25),
+     deptid int
+     );
+
+ create table marks(
+     markid int primary key,
+     studid int,
+     sub varchar(10),
+     score int,
+     foreign key(studid) references students(studid)
+     );
+
+create table customer(
+     cusid int primary key,
+     cusname varchar(25),
+     city varchar(15)
+     );
+
+ create table orders(
+     orderid int primary key,
+     cusid int,
+     product varchar(10),
+     amount decimal(10,2),
+     orderdate date,
+     foreign key(cusid) references customer(cusid)
+     );
+
+ create table orders(
+     orderid int primary key,
+     cusid int,
+     product varchar(10),
+     amount decimal(10,2),
+     orderdate date,
+     foreign key(cusid) references customer(cusid)
+     );
+
+ create table collegestud(
+     studid int primary key,
+     name varchar(20),
+     gender varchar(5),
+     deptid int,
+     age int,
+     foreign key (deptid) references department (deptid)
+     );
+
+ insert into students values(1,'affy',101),(2,'bab',102),(3,'chan',103);
+
+ insert into marks values(1,1,'math',86),(2,1,'science',90),(3,2,'math',75),(4,2,'science',80),(5,3,'math',95),(6,3,'science',92);
+
+insert into customer values(1,.ram','bombai'),(2,'fane','india');
+
+insert into orders values
+     (101,1,'lap',50000,'2022-03-11'),
+     (102,2,'mobile',25000,'2022-05-16');
+
+insert into department values(101,'BCA'),(102,'IT');
+
+insert into collegestud values(1,'licy','f',101,20),(2,'mob','m',102,21),(3,'lan','m',101,22);
+
+ select s.studid,s.name,m.sub,m.score from students s join marks m on s.studid = m.studid;
+
+select studid, name from students where studid = (select studid from marks group by studid order by sum(score) desc limit 1);
+
+select d.deptname,count(s.studid) from students s  join department d on s.deptid = d.deptid group by d.deptname;
+
+commit;
+
