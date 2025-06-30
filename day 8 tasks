@@ -1,0 +1,31 @@
+create database tasks;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> use tasks;
+Database changed
+mysql> CREATE TABLE Students (
+    ->     id INT PRIMARY KEY,
+    ->     name VARCHAR(50),
+    ->     department VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc Students;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int         | NO   | PRI | NULL    |       |
+| name       | varchar(50) | YES  |     | NULL    |       |
+| department | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> desc course;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| code  | varchar(10) | NO   | PRI | NULL    |       |
+| name  | varchar(50) | YES  |     | NULL    |       |
+| fee   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
