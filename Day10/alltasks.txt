@@ -20,8 +20,8 @@ mysql> select * from student where marks > 80;
 +-------+---------+-------+
 | StuID | name    | marks |
 +-------+---------+-------+
-|     1 | Alice   |    86 |
-|     3 | Charlie |    82 |
+|     1 | Affy    |    86 |
+|     3 | Chan    |    82 |
 |     5 | Eve     |    96 |
 +-------+---------+-------+
 3 rows in set (0.00 sec)
@@ -60,7 +60,7 @@ mysql> create table book(
     -> );
 Query OK, 0 rows affected (0.05 sec)
 
-mysql> insert into book values(1,'Python Basics','Ryahn'),(2,'DoEpicShit','Ana'),(3,'IKAGI','Alice');
+mysql> insert into book values(1,'Python Basics','Ryahn'),(2,'DoEpicShit','Ana'),(3,'IKAGI','ice');
 Query OK, 3 rows affected (0.01 sec)
 Records: 3  Duplicates: 0  Warnings: 0
 
