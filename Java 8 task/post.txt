@@ -3,7 +3,7 @@ mysql> CREATE TABLE department (
     ->     dept_id INT PRIMARY KEY,
     ->     dept_name VARCHAR(50)
     -> );
-ERROR 1050 (42S01): Table 'department' already exists
+Query OK, 0 rows affected (0.07 sec)
 mysql>
 mysql> CREATE TABLE employee (
     ->     emp_id INT PRIMARY KEY,
