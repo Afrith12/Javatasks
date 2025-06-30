@@ -1,0 +1,55 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class InventoryApp {
+    static final String URL = "jdbc:mysql://localhost:3306/inventorydb";
+    static final String USER = "root";
+    static final String PASS = "your_password";
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+            System.out.println("1. Add Product\n2. View All\n3. Search by Name");
+            int ch = sc.nextInt();
+            sc.nextLine();
+
+            if (ch == 1) {
+                System.out.print("ID: "); int id = sc.nextInt();
+                System.out.print("Name: "); String name = sc.next();
+                System.out.print("Price: "); double price = sc.nextDouble();
+
+                String insert = "INSERT INTO products (id, name, price) VALUES (?, ?, ?)";
+                try (PreparedStatement ps = conn.prepareStatement(insert)) {
+                    ps.setInt(1, id);
+                    ps.setString(2, name);
+                    ps.setDouble(3, price);
+                    ps.executeUpdate();
+                    System.out.println("Product added.");
+                }
+            } else if (ch == 2) {
+                String query = "SELECT * FROM products";
+                try (Statement st = conn.createStatement();
+                     ResultSet rs = st.executeQuery(query)) {
+                    while (rs.next()) {
+                        System.out.println(rs.getInt("id") + " " +
+                                           rs.getString("name") + " $" +
+                                           rs.getDouble("price"));
+                    }
+                }
+            } else if (ch == 3) {
+                System.out.print("Enter name: ");
+                String searchName = sc.nextLine();
+                String search = "SELECT * FROM products WHERE name LIKE ?";
+                try (PreparedStatement ps = conn.prepareStatement(search)) {
+                    ps.setString(1, "%" + searchName + "%");
+                    ResultSet rs = ps.executeQuery();
+                    while (rs.next()) {
+                        System.out.println(rs.getInt("id") + " " +
+                                           rs.getString("name") + " $" +
+                                           rs.getDouble("price"));
+                    }
+                }
+            }
+        }
+    }
+}

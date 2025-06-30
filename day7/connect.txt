@@ -1,0 +1,14 @@
+import java.sql.*;
+
+public class ConnectMySQL {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/studentdb";         String user = "root";
+        String password = "your_password";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to MySQL database!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}

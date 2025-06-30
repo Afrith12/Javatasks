@@ -1,0 +1,24 @@
+import java.sql.*;
+
+public class InsertStudent {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/studentdb";
+        String user = "root";
+        String password = "root";
+
+        String insertSQL = "INSERT INTO students (id, name, age) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+
+            stmt.setInt(1, 1);
+            stmt.setString(2, "Affy");
+            stmt.setInt(3, 20);
+
+            int rowsInserted = stmt.executeUpdate();
+            System.out.println("Rows inserted: " + rowsInserted);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
