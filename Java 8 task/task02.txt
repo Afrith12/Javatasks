@@ -1,0 +1,53 @@
+mysql> INSERT INTO Student VALUES (1, 'Affy', 'IT');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO Student VALUES (2, 'Sandy', 'CS');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Student VALUES (3, 'Rohan', 'BCA');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Student VALUES (4, 'Ram', 'CT');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Student VALUES (5, 'Kamal', 'B.COM');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++----+---------+------------+
+| id | name    | department |
++----+---------+------------+
+|  1 | Affy     | IT         |
+|  2 | Sandy   | CS         |
+|  3 | Rohan   | BCA        |
+|  4 | Ram     | CT         |
+|  5 | Kamal   | B.COM      |
++----+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO Course VALUES ('C101', 'Java', 1000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Course VALUES ('C102', 'Python', 2500);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Course VALUES ('C103', 'SQL', 3000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Course VALUES ('C104', 'Web Dev', 4500);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Course VALUES ('C105', 'C++', 5000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from course;
++------+---------+------+
+| code | name    | fee  |
++------+---------+------+
+| C101 | Java    | 1000 |
+| C102 | Python  | 2500 |
+| C103 | SQL     | 3000 |
+| C104 | Web Dev | 4500 |
+| C105 | C++     | 5000 |
++------+---------+------+
+5 rows in set (0.00 sec)
